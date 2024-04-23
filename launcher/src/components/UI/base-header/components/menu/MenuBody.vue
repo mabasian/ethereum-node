@@ -13,10 +13,14 @@
 //
 <script setup>
 import SingleMenu from "./SingleMenu.vue";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
 import { useFooter } from "@/store/theFooter";
+import { useNodeHeader } from "@/store/nodeHeader";
 
 const footerStore = useFooter();
+const router = useRouter();
+const headerStore = useNodeHeader();
 
 const items = ref([
   {
@@ -42,4 +46,34 @@ const items = ref([
     icon: "/img/icon/base-header-icons/header-logout-button.png",
   },
 ]);
+
+const handleShortcut = (event) => {
+  if (event.ctrlKey && event.shiftKey) {
+    switch (event.key.toLowerCase()) {
+      case "h": // Ctrl+Shift+H for Help
+        headerStore.setMenuModal("Help");
+        break;
+      case "j": // Ctrl+Shift+J for Notifications
+        headerStore.setMenuModal("Notifications");
+        break;
+      case "u": // Ctrl+Shift+U for Available Update
+        headerStore.setMenuModal("Available Update");
+        break;
+      case "g": // Ctrl+Shift+G for Settings
+        router.push("/setting");
+        break;
+      case "l": // Ctrl+Shift+L for Logout
+        headerStore.setMenuModal("Logout");
+        break;
+    }
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", handleShortcut);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleShortcut);
+});
 </script>
