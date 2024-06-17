@@ -2,6 +2,7 @@ import { createApp } from "vue"; // CHANGE
 import App from "./App.vue";
 import router from "./router/index.js";
 import { createPinia } from "pinia";
+import VueApexCharts from "vue3-apexcharts";
 
 import "./main.css";
 
@@ -18,7 +19,9 @@ app.component("BaseLayout", BaseLayout);
 app.component("InstallationLayout", InstallationLayout);
 app.component("TaskManager", TaskManager);
 app.component("StakingCustomModal", StakingCustomModal);
+app.component("ApexChart", VueApexCharts);
 
+app.use(VueApexCharts);
 app.use(router);
 app.use(pinia);
 app.use(i18n);

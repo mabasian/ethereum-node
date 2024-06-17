@@ -39,8 +39,9 @@
       ><the-network @mouseenter="cursorLocation = `${netSpeed}`" @mouseleave="cursorLocation = ''"
     /></dashboard-card>
     <dashboard-card class="portlist_card">
-      <port-list @mouseenter="cursorLocation = `${listPort}`" @mouseleave="cursorLocation = ''" />
+      <!-- <port-list @mouseenter="cursorLocation = `${listPort}`" @mouseleave="cursorLocation = ''" /> -->
       <!-- <SubscribedSubnets /> -->
+      <NewCpu />
     </dashboard-card>
     <div class="half-card">
       <rpc-endpoint @mouseenter="cursorLocation = `RPC ${endPoint}`" @mouseleave="cursorLocation = ''" />
@@ -57,6 +58,7 @@
 <script>
 import { mapWritableState } from "pinia";
 import { useFooter } from "@/store/theFooter";
+import NewCpu from "./NewCpu.vue";
 import TheStorage from "./TheStorage.vue";
 import DataApi from "./DataApi.vue";
 import SyncStatus from "./SyncStatus.vue";
@@ -73,13 +75,13 @@ import TheBalance from "./TheBalance";
 import RpcEndpoint from "./RpcEndpoint.vue";
 import WsEndpoint from "./WsEndpoint.vue";
 import DiskSpeed from "./DiskSpeed.vue";
-import PortList from "./PortList.vue";
+// import PortList from "./PortList.vue";
 import TheStaking from "./TheStaking.vue";
 // import NewPeerToPeer from "./NewPeerToPeer.vue";
 // import SubscribedSubnets from "./SubscribedSubnets.vue";
 export default {
   components: {
-    PortList,
+    // PortList,
     TheStorage,
     DataApi,
     SyncStatus,
@@ -90,6 +92,7 @@ export default {
     TheRam,
     // NewPeerToPeer,
     // SubscribedSubnets,
+    NewCpu,
     PeerToPeer,
     TheCpu,
     TheNetwork,
